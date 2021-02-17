@@ -1,7 +1,10 @@
-
 marcas = ["chevrolet","ford","fiat"]
 cant_puertas = [2,4,5]
 colores = ["blanco","azul","negro"]
+ventas = []
+nuevocli = "si"
+i = 0
+n = 1
 
 def valida_marca (marca):
      if marca not in marcas:
@@ -49,8 +52,8 @@ def total_color(color):
     return totalc            
 
 
-
-for i in range(1,6):
+while nuevocli == "si":
+    i += 1
     nombre = input ("Ingrese su nombre y apellido del comprador " + str(i) + ":")
     marca = input ("Ingrese la marca del vehículo:")
     valida_marca(marca)
@@ -62,7 +65,20 @@ for i in range(1,6):
     totalp = total_puertas(puertas)
     totalc = total_color(color)
     total = (totalm + totalp + totalc)
-    print ("El total del cliente " ,str(i), " es:" , total)
-    
+    ventas.append ({"Cliente ": i, "Nombre " :nombre, "Precio" :total})
+    nuevocli = str(input ("Hay un cliente nuevo: "))
+    total_clientes = i
+   
+if total_clientes > 50:
+    for n in range(0,total_clientes):
+        ventas[n]["Precio"] = (ventas[n]["Precio"] -(ventas[n]["Precio"]*0.18))
+elif total_clientes in range (11,50):
+    for n in range(0,total_clientes):
+        ventas[n]["Precio"] = (ventas[n]["Precio"] -(ventas[n]["Precio"]*0.15))
+elif total_clientes in range(6,10):
+    for n in range(0,total_clientes): 
+        ventas[n]["Precio"] = (ventas[n]["Precio"] -(ventas[n]["Precio"]*0.10))      
+else:
+    print("La venta no tiene descuentos")
 
-
+print (ventas)
